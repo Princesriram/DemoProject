@@ -17,22 +17,6 @@ public class Onlineshop {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		/*
-		 * List<WebElement> webs =
-		 * driver.findElements(By.xpath("//h4[contains(text(),'1 Kg')]"));
-		 * 
-		 * for (int i = 0; i < webs.size(); i++) {
-		 * 
-		 * String str = webs.get(i).getText(); System.out.println(str); if
-		 * (str.contentEquals("Cucumber - 1 Kg")) {
-		 * driver.findElement(By.xpath("(//button[@type='button'])[4]")).click(); break;
-		 * } }
-		 * 
-		 * 
-		 * if(str.contains("Cucumber - 1 Kg")) {
-		 * driver.findElement(By.xpath("//button[contains(text(),'ADD TO CART')]")).
-		 * click(); }
-		 */
 		driver.findElement(By.xpath("(//button[@type='button'])[4]")).click();
 
 		driver.findElement(By.xpath("//img[@alt='Cart']")).click();
