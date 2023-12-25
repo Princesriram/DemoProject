@@ -1,0 +1,59 @@
+package testngs;
+
+import java.lang.reflect.Array;
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Loginpage {
+
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		String[] str = { "iphone X", "Samsung Note 8", "Nokia Edge", "Blackberry" };
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get("https://rahulshettyacademy.com/loginpagePractise/");
+		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("rahulshettyacademy");
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("learning");
+		driver.findElement(By.xpath("(//span[@class='checkmark'])[2]")).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(7000));
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("okayBtn")));
+
+		driver.findElement(By.id("okayBtn")).click();
+
+		driver.findElement(By.xpath("//button[@id='okayBtn']")).click();
+
+		WebElement web = driver.findElement(By.xpath("//select[@class='form-control']"));
+		Select sec = new Select(web);
+		sec.selectByVisibleText("Consultant");
+		driver.findElement(By.xpath("//input[@id='terms']")).click();
+		driver.findElement(By.xpath("//input[@id='signInBtn']")).click();
+		List<WebElement> we = driver.findElements(By.xpath("//h4[@class='card-title']"));
+		System.out.println(we.size());
+
+		List<String> a = Arrays.asList(str);
+		for (int i = 0; i < we.size(); i++) {
+			String s = we.get(i).getText();
+			System.out.println(s);
+			System.out.println(a);
+
+			if (a.contains(s)) {
+				driver.findElements(By.xpath("//button[@class='btn btn-info']")).get(i).click();
+			}
+		}
+
+	}
+
+}
