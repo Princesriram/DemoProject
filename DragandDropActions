@@ -1,0 +1,32 @@
+package testngs;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Actionframe {
+
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver web = new ChromeDriver();
+		web.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		web.get("https://jqueryui.com/droppable/");
+		web.findElement(By.xpath("//a[text()='Droppable']")).click();
+		WebElement Frame = web.findElement(By.cssSelector("Iframe[class = demo-frame]"));
+		web.switchTo().frame(Frame);
+		WebElement Drag = web.findElement(By.cssSelector("div[id='draggable']"));
+		WebElement Drop = web.findElement(By.cssSelector("div[id='droppable']"));
+		Actions act = new Actions(web);
+		act.dragAndDrop(Drag, Drop);
+		web.switchTo().defaultContent();
+		
+		
+
+	}
+
+}
