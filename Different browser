@@ -1,0 +1,33 @@
+package testngs;
+
+
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Differentbrowser {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver webie = new ChromeDriver();
+		webie.get("https://rahulshettyacademy.com/loginpagePractise/");
+		webie.findElement(By.cssSelector("a[class = blinkingText]")).click();
+		Set<String>str = webie.getWindowHandles();
+		Iterator<String>it = str.iterator();
+		String parentID=it.next();
+		String childID=it.next();
+		webie.switchTo().window(childID);
+		String s = webie.findElement(By.xpath("//a[text()='mentor@rahulshettyacademy.com']")).getText();
+		webie.switchTo().window(parentID);
+		webie.findElement(By.cssSelector("input[id = username]")).sendKeys(s);
+		
+		
+	
+
+	}
+
+}
