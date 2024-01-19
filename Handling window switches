@@ -1,0 +1,23 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Datehandling {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriver web = new ChromeDriver();
+		web.get("https://formy-project.herokuapp.com/switch-window");
+		web.findElement(By.xpath("//button[@id='new-tab-button']")).click();
+		Set<String> windows = web.getWindowHandles();
+		Iterator<String> it = windows.iterator();
+		String parent = it.next();
+		String Child = it.next();
+		web.switchTo().window(Child);
+		
+		web.findElement(By.xpath("//a[text()='Form']")).click();
+		web.switchTo().window(parent);
+		web.findElement(By.cssSelector("button[id='alert-button']")).click();
+		web.switchTo().alert().accept();
+		
